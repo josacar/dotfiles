@@ -10,3 +10,5 @@ Missing things:
 - Add secrets like gpg and ssh keys from `bitwarden`
 
 - Add commands to initialize the system from `freshrc` with [scripts](https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/)
+
+- Add `work` setup and cloning of private repository
