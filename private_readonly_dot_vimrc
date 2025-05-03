@@ -1,0 +1,294 @@
+set encoding=utf-8
+set nocompatible                  " Must come first because it changes other options.
+set background=dark
+
+syntax enable                     " Turn on syntax highlighting.
+filetype plugin indent on         " Turn on file type detection.
+
+runtime macros/matchit.vim        " Load the matchit plugin.
+
+set showcmd                       " Display incomplete commands.
+set showmode                      " Display the mode you're in.
+
+set backspace=indent,eol,start    " Intuitive backspacing.
+
+set hidden                        " Handle multiple buffers better.
+
+set wildmenu                      " Enhanced command line completion.
+set wildmode=longest,full         " Complete files with tab
+
+set ignorecase                    " Case-insensitive searching.
+set smartcase                     " But case-sensitive if expression contains a capital letter.
+
+set number                        " Show line numbers.
+set ruler                         " Show cursor position.
+
+set incsearch                     " Highlight matches as you type.
+set hlsearch                      " Highlight matches.
+" turn off search highlight"
+nnoremap <leader><space> :nohlsearch<CR>
+
+set wrap                          " Turn on line wrapping.
+set scrolloff=3                   " Show 3 lines of context around the cursor.
+
+set title                         " Set the terminal's title
+set lazyredraw                    " redraw only when we need to."
+set showmatch                     " highlight matching [{()}]"
+
+if !has("gui_running")            " Don't set titleold
+set titleold=
+if &term == "xterm" && &t_ts == ""
+  let &t_ts = "\e]2;"
+endif
+if &t_ts != ""
+  set title titlestring=%t%m\ -\ VIM
+endif
+endif
+
+set noerrorbells                      " No beeping.
+set novisualbell                      " No flashing
+
+set nobackup                          " Don't make a backup before overwriting a file.
+set nowritebackup                     " And again.
+set directory=$HOME/.vim-tmp/tmp      " Keep swap files in one location
+set backupdir=$HOME/.vim-tmp/_backup  " where to put backup files.
+
+set tabstop=2                         " Global tab width.
+set shiftwidth=2                      " And again, related.
+set expandtab                         " Use spaces instead of tabs
+set laststatus=2                      " Show the status line all the time
+set listchars=tab:▸\ ,eol:¬
+"set list                             " Show invisible characters
+"set cursorline                       " Show cursor line.
+
+source ~/.vim/vimrc/plug-bundle.vim
+source ~/.vim/vimrc/plug-bundle-versions.vim
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.scssc,*.sassc
+
+" set autoread                     " Update open files when changed externally
+
+set t_Co=256
+
+colorscheme vividchalk
+highlight clear SignColumn
+
+" Only do this part when compiled with support for autocommands
+if has("autocmd")
+" Enable file type detection
+filetype on
+" Syntax of these languages is fussy over tabs Vs spaces
+autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+" Customisations based on house-style (arbitrary)
+autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
+" Treat .rss files as XML
+autocmd BufNewFile,BufRead *.rss setfiletype xml
+autocmd BufNewFile,BufRead *.eco set ft=html
+endif
+
+let mapleader=","
+if exists(":Tabularize")
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+
+" Improve CtrlP
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_by_filename = 0 " set searching by full path
+
+map <leader>gg :e Gemfile<cr>
+"map <leader>gr :e config/routes.rb<cr>
+"map <leader>db :e config/database.yml<cr>
+map <leader>f :CtrlP .<cr>
+
+" Edit another file in the same directory as the current file
+" uses expression to extract path from current file's path
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :e %%
+map <leader>sp :sp %%
+map <leader>vsp :vsp %%
+
+" easier navigation between split windows
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
+" Aliases for some typos
+command WQ wq
+command Wq wq
+command W w
+command Q q
+
+" disable arroy keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+
+" Strip trailing whitespace
+function! <SID>StripTrailingWhitespaces()
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  %s/\s\+$//e
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+" Airline
+
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
+
+let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
+
+let g:lightline#bufferline#show_number = 1
+let g:lightline#bufferline#min_buffer_count = 2
+
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+
+" INSERT to NORMAL timeout
+set ttimeoutlen=50
+
+" Don't autosave/load sessions
+let g:session_autosave = 'no'
+let g:session_autoload = 'no'
+
+" vim-rspec mappings
+let g:rspec_command = "!bundle exec rspec {spec}"
+nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
+nnoremap <Leader>s :call RunNearestSpec()<CR>
+nnoremap <Leader>l :call RunLastSpec()<CR>
+nnoremap <Leader>a :call RunAllSpecs()<CR>
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+" Don't print bufferline bar
+let g:bufferline_echo = 0
+
+" SplitJoin plugin
+nmap sj :SplitjoinSplit<cr>
+nmap sk :SplitjoinJoin<cr>
+
+" Store notes on Documents by default
+let g:notes_directories = ['~/Documents/Notes']
+
+" Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
+        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+endfunction
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+
+" Create non-existent dirs on file save
+augroup vimrc-auto-mkdir
+  autocmd!
+  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+  function! s:auto_mkdir(dir, force)
+    if !isdirectory(a:dir)
+          \   && (a:force
+          \       || input("'" . a:dir . "' does not exist. Create? [y/N]") =~? '^y\%[es]$')
+      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+    endif
+  endfunction
+augroup END
+
+" vim-markdown
+let g:vim_markdown_folding_disabled=1
+
+" reload vim config
+nnoremap <Leader>r :so $MYVIMRC<CR>
+
+" support ack 1.x
+let g:ack_default_options=" -H --nocolor --nogroup --column"
+
+" disable go autoinstall
+let g:go_disable_autoinstall = 1
+
+" enable undo history
+set undofile
+set undodir=~/.vim-tmp/undodir
+
+nnoremap <Leader>p :!highlight -s solarized-light -O rtf % \| pbcopy<CR><CR>
+
+" neovim
+set mouse=
+
+"Enable and disable mouse use
+noremap <Leader>m :call ToggleMouse()<CR>
+function! ToggleMouse()
+  if &mouse == 'a'
+    set mouse=
+    echo "Mouse usage disabled"
+  else
+    set mouse=a
+    echo "Mouse usage enabled"
+  endif
+endfunction
+
+" Allow saving buffer as root
+cmap w!! w !sudo tee % >/dev/null
+
+" Show special chars as characters
+set listchars=tab:▶\ ,trail:~,extends:>,precedes:<,nbsp:.,eol:¬
+set list
+
+nnoremap <silent> <C-P> :CtrlP<CR>
+
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>" " OmniCompletion
+let g:SuperTabDefaultCompletionType = "context" " use context mode
+
+set clipboard=unnamed " Enable copying to system's clipboard
+
+" vim-commentary
+if maparg('\\','n') ==# '' && maparg('\','n') ==# '' && !hasmapto('<Plug>Commentary')
+  xmap \\  <Plug>Commentary
+  nmap \\  <Plug>Commentary
+  nmap \\\ <Plug>CommentaryLine
+  nmap \\c <Plug>ChangeCommentary
+  nmap \\u <Plug>Commentary<Plug>Commentary
+endif
+
+let g:ale_linters = {
+\   'ruby': ['standardrb'],
+\}
