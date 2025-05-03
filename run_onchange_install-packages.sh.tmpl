@@ -1,11 +1,9 @@
 #!/bin/sh
 
 {{ if eq .chezmoi.os "linux" -}}
+
 echo "Install packages ..."
 sudo apt install ripgrep vim neovim -y
-
-echo "Install vim plugins ..."
-vim +PlugInstall +PlugUpdate +qall
 
 {{ else if eq .chezmoi.os "darwin" -}}
 
@@ -34,9 +32,6 @@ fi
 
 echo "Install Brewfile packages ..."
 brew bundle
-
-echo "Install vim plugins ..."
-vim +PlugInstall +PlugUpdate +qall
 
 echo "Install chefdk gems ..."
 install_chefdk_gem kitchen-dokken
