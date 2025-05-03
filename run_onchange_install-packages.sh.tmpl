@@ -1,0 +1,46 @@
+#!/bin/sh
+
+{{ if eq .chezmoi.os "linux" -}}
+echo "Install packages ..."
+sudo apt install ripgrep vim neovim -y
+
+echo "Install vim plugins ..."
+vim +PlugInstall +PlugUpdate +qall
+
+{{ else if eq .chezmoi.os "darwin" -}}
+
+install_chefdk_gem() {
+  gem=$1
+  if command -v chef >/dev/null 2>&1 && chef gem list --no-installed "$gem" >/dev/null 2>&1; then
+    chef gem install "$gem"
+  fi
+}
+
+echo "Setting Mac defaults..."
+
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+defaults write bluetoothaudiod "Enable AptX codec" -bool true
+defaults write bluetoothaudiod "Enable AAC codec" -bool true
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+defaults write com.apple.screencapture location $HOME/screenshots
+
+echo "Install Brew ..."
+
+if ! command -v brew >/dev/null 2>&1; then
+  echo 'Installing brew'
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+echo "Install Brewfile packages ..."
+brew bundle
+
+echo "Install vim plugins ..."
+vim +PlugInstall +PlugUpdate +qall
+
+echo "Install chefdk gems ..."
+install_chefdk_gem kitchen-dokken
+install_chefdk_gem kitchen-inspec
+install_chefdk_gem inspec
+{{ end -}}
+
