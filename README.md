@@ -1,14 +1,19 @@
 WIP
 
-Dotfiles managed with chezmoi, converted from `freshshell/fresh`
+# Installation
 
-Missing things:
+These dotfiles are managed with chezmoi, converted from `freshshell/fresh`.
+
+Open a terminal and run:
+
+```
+sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply josacar
+```
+
+# Missing things to backport
+
 - Add `rupa/z` to `.bashrc`. Maybe with [includes](https://www.chezmoi.io/user-guide/include-files-from-elsewhere/#extract-a-single-file-from-an-archive)
 - Refactor `.bashrc` fragments using [include or template](https://www.chezmoi.io/user-guide/manage-machine-to-machine-differences/#use-completely-different-dotfiles-on-different-machines)
-- Check the `private` and `private_readonly` as maybe only `.ssh` makes sense to be `private`
-
 - Add secrets like gpg and ssh keys from `bitwarden`
 
-- Add commands to initialize the system from `freshrc` with [scripts](https://www.chezmoi.io/user-guide/use-scripts-to-perform-actions/)
-
-- Add `work` setup and cloning of private repository
+- Add `work` setup and cloning of private repository, and make `.vpnc-script` executable
