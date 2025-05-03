@@ -1,43 +1,13 @@
-return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "bash",
-        "hcl",
-        "html",
-        "javascript",
-        "json",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "query",
-        "regex",
-        "terraform",
-        "tsx",
-        "typescript",
-        "vim",
-        "yaml",
-      },
-    },
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
+
+---@class ParserInfo[]
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+parser_config.crystal = {
+  install_info = {
+    url = "/home/selu/code/tree-sitter-crystal",
+    files = { "src/parser.c", "src/scanner.c" },
+    branch = "main",
   },
-  {
-    "olimorris/codecompanion.nvim",
-    config = true,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    opts = {
-      strategies = {
-        chat = {
-          adapter = "gemini",
-        },
-        inline = {
-          adapter = "gemini",
-        },
-      },
-    },
-  },
+  filetype = "cr",
 }
