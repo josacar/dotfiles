@@ -1,0 +1,5 @@
+[data]
+email = "josacar@users.noreply.github.com"
+name = "Jose Luis Salas"
+signingkey = "3B5BB81B203269D79D8492D9BE7CDF9012256B23"
+work = false                                            # Set to true for work environment
