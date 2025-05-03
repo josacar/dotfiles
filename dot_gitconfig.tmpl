@@ -1,7 +1,7 @@
 [user]
-  email = {{ if hasKey . "email" }}{{ .email | quote }}{{ else }}"josacar@users.noreply.github.com"{{ end }}
-  name = Jose Luis Salas
-  signingkey = {{ if hasKey . "signingkey" }}{{ .signingkey | quote }}{{ else }}"3B5BB81B203269D79D8492D9BE7CDF9012256B23"{{ end }}
+  email = {{ .email | quote }}
+  name = {{ .name | quote }}
+  signingkey = {{ .signingkey | quote }}
 [github]
   user = josacar
 [core]
