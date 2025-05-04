@@ -22,6 +22,7 @@ export TERM='xterm-256color'
 export LC_ALL=en_US.UTF-8
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 export XDG_DATA_DIRS="$HOME/.local/share/flatpak/exports/share:$XDG_DATA_DIRS"
+export PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
 alias less='\less -r'
 alias vless='/usr/share/vim/vim80/macros/less.sh'
