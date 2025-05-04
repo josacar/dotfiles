@@ -1,0 +1,45 @@
+# bashrc/common
+
+{{ include "partials/bashrc/common" -}}
+
+# bashrc/custom
+
+{{ include "partials/bashrc/custom" -}}
+
+{{ if eq .chezmoi.os "darwin" -}}
+# bashrc/brew
+{{ include "partials/bashrc/brew" -}}
+{{ end }}
+
+# bashrc/git
+{{ include "partials/bashrc/git" -}}
+
+# bashrc/tools
+{{ include "partials/bashrc/tools" -}}
+
+# bashrc/ruby
+{{ include "partials/bashrc/ruby" -}}
+
+# bashrc/completions/git
+{{ include "partials/bashrc/completions/git" -}}
+
+# bashrc/completions/tmux
+{{ include "partials/bashrc/completions/tmux" -}}
+
+# bashrc/asdf
+{{ include "partials/bashrc/asdf" -}}
+
+# bashrc/assume
+{{ include "partials/bashrc/assume" -}}
+
+# bashrc/go
+{{ include "partials/bashrc/go" -}}
+
+# bashrc/iterm
+{{ include "partials/bashrc/iterm" -}}
+
+# bashrc/mise
+{{ include "partials/bashrc/mise" -}}
+
+# load z/rupa script
+. "${HOME}/z.sh"
