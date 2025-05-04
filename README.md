@@ -15,3 +15,5 @@ sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply josacar
 - Add secrets like gpg and ssh keys from `bitwarden`
 
 - Add `work` setup and cloning of private repository, and make `.vpnc-script` executable
+
+- Add `bin` scripts
