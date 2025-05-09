@@ -5,3 +5,6 @@ partials
 Brewfile
 Library
 {{ end }}
+{{- if ( or ( not ( hasKey . "work")) ( eq .work false) ) }}
+.ssh/curro
+{{ end }}
