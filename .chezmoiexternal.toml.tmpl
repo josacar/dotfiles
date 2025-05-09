@@ -6,3 +6,9 @@ refreshPeriod = "168h"
 type = "file"
 url = "https://raw.githubusercontent.com/rupa/z/master/z.sh"
 refreshPeriod = "168h"
+{{- if ( and (hasKey . "work") ( eq .work true) ) }}
+[".dotfiles/work"]
+type = "git-repo"
+url = "git+ssh://git@gitlab.com/josacar/work-dotfiles.git"
+refreshPeriod = "168h"
+{{ end }}

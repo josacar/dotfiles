@@ -9,7 +9,3 @@ Open a terminal and run:
 ```
 sh -c "$(curl -fsLS https://chezmoi.io/get)" -- init --apply josacar
 ```
-
-# Missing things to backport
-
-- Add `work` setup and cloning of private repository, and make `.vpnc-script` executable

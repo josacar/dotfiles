@@ -31,8 +31,8 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-if [ -f $HOME/.bashrc-extra ]; then
-  source $HOME/.bashrc-extra
+if [ -f $HOME/.dotfiles/work/bashrc-extra ]; then
+  source $HOME/.dotfiles/work/bashrc-extra
 fi
 
 fixssh() {
