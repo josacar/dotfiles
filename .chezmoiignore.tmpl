@@ -4,7 +4,11 @@ partials
 {{ if ne .chezmoi.os "darwin" }}
 Brewfile
 Library
+{{ else }}
+bin/no_turbo
+bin/turbo
 {{ end }}
+
 {{- if ( or ( not ( hasKey . "work")) ( eq .work false) ) }}
 .ssh/curro
 {{ end }}
