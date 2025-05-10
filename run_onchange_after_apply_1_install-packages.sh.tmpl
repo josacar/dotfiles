@@ -4,13 +4,16 @@
 
 echo "Install packages ..."
 sudo apt-get update -qy
-sudo apt-get install ripgrep vim neovim gpg sudo wget curl -y
+sudo apt-get install ripgrep vim neovim gpg sudo wget curl fd-find -y
 
-sudo install -dm 755 /etc/apt/keyrings
-wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | sudo tee /etc/apt/keyrings/mise-archive-keyring.gpg 1> /dev/null
-echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg arch=amd64] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list
-sudo apt update -qy
-sudo apt install -y mise
+if ! command -v mise >/dev/null 2>&1; then
+  echo "Installing mise"
+  sudo install -dm 755 /etc/apt/keyrings
+  wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | sudo tee /etc/apt/keyrings/mise-archive-keyring.gpg 1> /dev/null
+  echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg arch=amd64] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list
+  sudo apt update -qy
+  sudo apt install -y mise
+fi
 
 {{ else if eq .chezmoi.os "darwin" -}}
 
@@ -45,4 +48,3 @@ install_chefdk_gem kitchen-dokken
 install_chefdk_gem kitchen-inspec
 install_chefdk_gem inspec
 {{ end -}}
-
