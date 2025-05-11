@@ -1,14 +1,107 @@
-[".vim/autoload/plug.vim"]
-type = "file"
-url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-refreshPeriod = "168h"
+{{- /*
+  vim:ft=toml.gotmpl:
+    */ -}}
+
 [".dotfiles/z.sh"]
 type = "file"
 url = "https://raw.githubusercontent.com/rupa/z/master/z.sh"
 refreshPeriod = "168h"
+
 {{- if ( and (hasKey . "work") ( eq .work true) ) }}
+
 [".dotfiles/work"]
 type = "git-repo"
 url = "git+ssh://git@gitlab.com/josacar/work-dotfiles.git"
 refreshPeriod = "168h"
 {{ end }}
+
+# Fonts
+
+{{- $font_dir := "" }}
+{{- if eq .chezmoi.os "darwin" }}
+{{- $font_dir = "Library/Fonts" }}
+{{- else if eq .chezmoi.os "linux" }}
+{{- $font_dir = ".local/share/fonts" }}
+{{- end }}
+
+{{- range (list "CodeNewRoman" "Meslo") }}
+["{{- joinPath $font_dir . -}}"]
+url = {{ printf "%s.tar.xz" . | gitHubLatestReleaseAssetURL "ryanoasis/nerd-fonts" | quote }}
+type = "archive"
+executable = true
+refreshPeriod = "720h" # 30 days
+exclude = ["*NerdFontPropo*","*NFP*", "README.md"]
+{{- end }}
+
+# Binaries
+
+# Other arch formats
+{{- $arch := "" -}}
+{{- if eq .chezmoi.arch "amd64" -}}
+  {{- $arch = "x86_64" -}}
+{{- else -}}
+  {{- $arch = .chezmoi.arch -}}
+{{- end }}
+
+[".local/bin/age"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "FiloSottile/age" (printf "age-*-%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+executable = true
+path = "age/age"
+refreshPeriod = "360h" # 15 days
+
+[".local/bin/age-keygen"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "FiloSottile/age" (printf "age-*-%s-%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+executable = true
+path = "age/age-keygen"
+refreshPeriod = "360h" # 15 days
+
+[".local/bin/gdu"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "dundee/gdu" (printf "gdu_%s_%s.tgz" .chezmoi.os .chezmoi.arch) | quote }}
+executable = true
+path = "gdu_linux_amd64"
+refreshPeriod = "360h" # 15 days
+
+[".local/bin/jless"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "PaulJuliusMartinez/jless" ( printf "jless-v*-%s-unknown-linux-gnu.zip" $arch ) | quote }}
+executable = true
+path = "jless"
+refreshPeriod = "360h" # 15 days
+
+[".local/bin/mitamae"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "itamae-kitchen/mitamae" ( printf "mitamae-%s-%s.tar.gz" $arch .chezmoi.os ) | quote }}
+executable = true
+path = "mitamae-x86_64-linux"
+refreshPeriod = "360h" # 15 days
+
+# Other arch & os formats
+{{- $rust_arch := "" -}}
+{{- if eq .chezmoi.arch "amd64" -}}
+{{- $rust_arch = "x86_64" -}}
+{{- else -}}
+{{- $rust_arch = .chezmoi.arch -}}
+{{- end }}
+{{- $rust_os := "" -}}
+{{- if eq .chezmoi.os "linux" -}}
+{{- $rust_os = "unknown-linux-gnu" -}}
+{{- else -}}
+{{- $rust_os = .chezmoi.os -}}
+{{- end }}
+
+[".local/bin/bw"]
+type = "archive-file"
+url = "https://github.com/bitwarden/clients/releases/download/cli-v{{ .tools.bw.version }}/bw-{{ .chezmoi.os }}-{{ .tools.bw.version }}.zip" 
+path = "bw"
+executable = true
+refreshPeriod = "360h" # 15 days
+
+[".local/bin/bws"]
+type = "archive-file"
+url = "https://github.com/bitwarden/sdk-sm/releases/download/bws-v{{ .tools.bws.version }}/bws-{{ $rust_arch }}-{{ $rust_os }}-{{ .tools.bws.version }}.zip"
+path = "bws"
+executable = true
+refreshPeriod = "360h" # 15 days
