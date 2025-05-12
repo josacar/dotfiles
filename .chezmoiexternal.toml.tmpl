@@ -111,9 +111,16 @@ path = "bws"
 executable = true
 refreshPeriod = "360h" # 15 days
 
+{{- $usage_arch := "" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{- $usage_arch = "universal" -}}
+{{- else -}}
+{{- $usage_arch = $rust_os -}}
+{{- end }}
+
 [".local/bin/usage"]
 type = "archive-file"
-url = {{ gitHubLatestReleaseAssetURL "jdx/usage" ( printf "usage-%s-%s.tar.gz" $arch $rust_os ) | quote }}
+url = {{ gitHubLatestReleaseAssetURL "jdx/usage" ( printf "usage-%s-%s.tar.gz" $usage_arch $rust_os ) | quote }}
 path = "usage"
 executable = true
 refreshPeriod = "360h" # 15 days
