@@ -90,21 +90,30 @@ executable = true
 refreshPeriod = "360h" # 15 days
 
 # Other arch & os formats
-{{- $bws_filename := "bws" -}}
+{{- $bws_prefix := "bws" -}}
 {{- if eq .chezmoi.arch "amd64" -}}
-{{- $bws_filename = printf "%s-%s" $bws_filename "x86_64" -}}
+{{- $bws_prefix = printf "%s-%s" $bws_prefix "x86_64" -}}
 {{- else -}}
-{{- $bws_filename = printf "%s-%s" $bws_filename "aarch64" -}}
+{{- $bws_prefix = printf "%s-%s" $bws_prefix "aarch64" -}}
 {{- end }}
+
+{{- $rust_os := "" -}}
 {{- if eq .chezmoi.os "linux" -}}
-{{- $bws_filename = printf "%s-%s" $bws_filename "unknown-linux-gnu" -}}
+{{- $rust_os = "unknown-linux-gnu" -}}
 {{- else -}}
-{{- $bws_filename = printf "%s-%s" $bws_filename "apple-darwin" -}}
+{{- $rust_os = "apple-darwin" -}}
 {{- end }}
 
 [".local/bin/bws"]
 type = "archive-file"
-url = "https://github.com/bitwarden/sdk-sm/releases/download/bws-v{{ .tools.bws.version }}/{{ $bws_filename }}-{{ .tools.bws.version }}.zip"
+url = "https://github.com/bitwarden/sdk-sm/releases/download/bws-v{{ .tools.bws.version }}/{{ $bws_prefix }}-{{ $rust_os }}-{{ .tools.bws.version }}.zip"
 path = "bws"
+executable = true
+refreshPeriod = "360h" # 15 days
+
+[".local/bin/usage"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "jdx/usage" ( printf "usage-%s-%s.tar.gz" $arch $rust_os ) | quote }}
+path = "usage"
 executable = true
 refreshPeriod = "360h" # 15 days
