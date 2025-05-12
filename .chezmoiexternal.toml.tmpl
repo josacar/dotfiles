@@ -74,7 +74,7 @@ refreshPeriod = "360h" # 15 days
 # Other arch & os formats
 {{- $bw_filename:= "bw" -}}
 {{- if eq .chezmoi.os "linux" -}}
-{{- $bw_filename = printf "%s-%s" $bw_filename .chezmoi.arch -}}
+{{- $bw_filename = printf "%s-%s" $bw_filename .chezmoi.os -}}
 {{- else -}}
 {{- $bw_filename = printf "%s-%s" $bw_filename "macos" -}}
 {{- end }}
