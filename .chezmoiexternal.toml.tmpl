@@ -40,7 +40,7 @@ exclude = ["*NerdFontPropo*","*NFP*", "README.md"]
 {{- if eq .chezmoi.arch "amd64" -}}
   {{- $arch = "x86_64" -}}
 {{- else -}}
-  {{- $arch = .chezmoi.arch -}}
+  {{- $arch = "aarch64" -}}
 {{- end }}
 
 [".local/bin/age"]
@@ -61,47 +61,50 @@ refreshPeriod = "360h" # 15 days
 type = "archive-file"
 url = {{ gitHubLatestReleaseAssetURL "dundee/gdu" (printf "gdu_%s_%s.tgz" .chezmoi.os .chezmoi.arch) | quote }}
 executable = true
-path = "gdu_linux_amd64"
-refreshPeriod = "360h" # 15 days
-
-[".local/bin/jless"]
-type = "archive-file"
-url = {{ gitHubLatestReleaseAssetURL "PaulJuliusMartinez/jless" ( printf "jless-v*-%s-unknown-linux-gnu.zip" $arch ) | quote }}
-executable = true
-path = "jless"
+path = "gdu_{{ .chezmoi.os }}_{{ .chezmoi.arch }}"
 refreshPeriod = "360h" # 15 days
 
 [".local/bin/mitamae"]
 type = "archive-file"
 url = {{ gitHubLatestReleaseAssetURL "itamae-kitchen/mitamae" ( printf "mitamae-%s-%s.tar.gz" $arch .chezmoi.os ) | quote }}
 executable = true
-path = "mitamae-x86_64-linux"
+path = "mitamae-{{ $arch }}-{{ .chezmoi.os }}"
 refreshPeriod = "360h" # 15 days
 
 # Other arch & os formats
-{{- $rust_arch := "" -}}
-{{- if eq .chezmoi.arch "amd64" -}}
-{{- $rust_arch = "x86_64" -}}
-{{- else -}}
-{{- $rust_arch = .chezmoi.arch -}}
-{{- end }}
-{{- $rust_os := "" -}}
+{{- $bw_filename:= "bw" -}}
 {{- if eq .chezmoi.os "linux" -}}
-{{- $rust_os = "unknown-linux-gnu" -}}
+{{- $bw_filename = printf "%s-%s" $bw_filename .chezmoi.arch -}}
 {{- else -}}
-{{- $rust_os = .chezmoi.os -}}
+{{- $bw_filename = printf "%s-%s" $bw_filename "macos" -}}
+{{- end }}
+{{- if eq .chezmoi.arch "arm64" -}}
+{{- $bw_filename = printf "%s-%s" $bw_filename .chezmoi.arch }} -}}
 {{- end }}
 
 [".local/bin/bw"]
 type = "archive-file"
-url = "https://github.com/bitwarden/clients/releases/download/cli-v{{ .tools.bw.version }}/bw-{{ .chezmoi.os }}-{{ .tools.bw.version }}.zip" 
+url = "https://github.com/bitwarden/clients/releases/download/cli-v{{ .tools.bw.version }}/{{ $bw_filename }}-{{ .tools.bw.version }}.zip" 
 path = "bw"
 executable = true
 refreshPeriod = "360h" # 15 days
 
+# Other arch & os formats
+{{- $bws_filename := "bws" -}}
+{{- if eq .chezmoi.arch "amd64" -}}
+{{- $bws_filename = printf "%s-%s" $bws_filename "x86_64" -}}
+{{- else -}}
+{{- $bws_filename = printf "%s-%s" $bws_filename "aarch64" -}}
+{{- end }}
+{{- if eq .chezmoi.os "linux" -}}
+{{- $bws_filename = printf "%s-%s" $bws_filename "unknown-linux-gnu" -}}
+{{- else -}}
+{{- $bws_filename = printf "%s-%s" $bws_filename "apple-darwin" -}}
+{{- end }}
+
 [".local/bin/bws"]
 type = "archive-file"
-url = "https://github.com/bitwarden/sdk-sm/releases/download/bws-v{{ .tools.bws.version }}/bws-{{ $rust_arch }}-{{ $rust_os }}-{{ .tools.bws.version }}.zip"
+url = "https://github.com/bitwarden/sdk-sm/releases/download/bws-v{{ .tools.bws.version }}/{{ $bws_filename }}-{{ .tools.bws.version }}.zip"
 path = "bws"
 executable = true
 refreshPeriod = "360h" # 15 days
