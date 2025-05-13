@@ -62,19 +62,7 @@ mas "Numbers", id: 409203825
 tap "common-fate/granted"
 brew "granted"
 
-def fsc(_wadus)
- `"/Applications/Managed Software Center.app/Contents/MacOS/Managed Software Center"`
-end
-
-fsc "awscli"
-fsc "docker"
-fsc "firefox"
-fsc "magellan"
-fsc "google-chrome"
-fsc "session-manager-plugin"
-fsc "spotify"
-fsc "textmate"
-fsc "vlc"
+# Rest is installed via FSC
 {{- else }}
 brew "awscli"
 cask "amazon-photos"

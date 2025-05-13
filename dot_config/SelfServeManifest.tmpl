@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>managed_installs</key>
+	<array>
+{{- range (list "openconnect-flywire" "MSTeams" "Firefox" "magellan" "VLC" "Spotify" "AWSCLI") }}
+   {{ printf "<string>%s</string>" . | indent 10 -}}
+{{ end }}
+	</array>
+	<key>managed_uninstalls</key>
+	<array/>
+</dict>
+</plist>

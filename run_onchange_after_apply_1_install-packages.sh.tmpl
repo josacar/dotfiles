@@ -47,4 +47,12 @@ echo "Install chefdk gems ..."
 install_chefdk_gem kitchen-dokken
 install_chefdk_gem kitchen-inspec
 install_chefdk_gem inspec
+
+{{- if ( and (hasKey . "work") ( eq .work true) ) }}
+
+echo
+echo "Don't forget to run this command to install missing tools for SHA {{ include "dot_config/SelfServeManifest.tmpl" | sha256sum }}!!!"
+echo 'sudo cp ~/.config/SelfServeManifest /Library/Managed\ Installs/manifests/SelfServeManifest'
+
+{{- end -}}
 {{ end -}}
