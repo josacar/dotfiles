@@ -115,7 +115,7 @@ refreshPeriod = "360h" # 15 days
 {{- if eq .chezmoi.os "darwin" -}}
 {{- $usage_arch = "universal" -}}
 {{- else -}}
-{{- $usage_arch = $rust_os -}}
+{{- $usage_arch = $arch -}}
 {{- end }}
 
 [".local/bin/usage"]
