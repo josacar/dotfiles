@@ -50,3 +50,6 @@ disabled = true
 
 [docker_context]
 disabled = true
+
+[battery]
+disabled = true
