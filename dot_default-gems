@@ -2,3 +2,6 @@ bundler
 rubocop
 rubocop-performance
 standardrb
+pry
+pry-doc
+hirb
