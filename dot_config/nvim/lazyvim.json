@@ -1,6 +1,7 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.lang.ruby"
+    "lazyvim.plugins.extras.lang.ruby",
+    "lazyvim.plugins.extras.lang.terraform"
   ],
   "install_version": 8,
   "news": {
