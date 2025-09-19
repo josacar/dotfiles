@@ -1,7 +1,9 @@
-{{- $work := promptBool "Use work profile (y/n)" -}}
+{{- $work := promptBool "Use work profile" false -}}
+{{- $email  := promptString "Git email" "josacar@users.noreply.github.com" -}}
+{{- $gpgkey  := promptString "Git GPG key" "3B5BB81B203269D79D8492D9BE7CDF9012256B23" -}}
 
 [data]
-email = "josacar@users.noreply.github.com"
 name = "Jose Luis Salas"
-signingkey = "3B5BB81B203269D79D8492D9BE7CDF9012256B23"
+email = {{ $email | quote }}
+signingkey = {{ $gpgkey | quote }}
 work = {{ $work }}
