@@ -1,3 +1,6 @@
+{{- /*
+  vim:ft=gitconfig.gotmpl:
+*/ -}}
 [user]
   email = {{ .email | quote }}
   name = {{ .name | quote }}
@@ -20,13 +23,13 @@
   pager = true
 [color "branch"]
   current = yellow reverse
-  local   = yellow
-  remote  = green
+  local = yellow
+  remote = green
 [color "diff"]
   meta = blue
   frag = magenta
-  old  = red
-  new  = green
+  old = red
+  new = green
 [color "status"]
   added = yellow
   changed = green
@@ -34,9 +37,9 @@
 [push]
   default = current
 [alias]
-  add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+  add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add $(f)"
   amend = commit --amend
-  edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; $EDITOR `f`"
+  edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; $EDITOR $(f)"
   log1 = log --abbrev-commit --pretty=oneline
   logf = log --pretty=fuller
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
@@ -45,7 +48,7 @@
   noff = merge --no-ff
   pend = log @{upstream}..
   pullify = config --add remote.origin.fetch '+refs/pull/*/head:refs/remotes/origin/pr/*'
-  pr  = "!f() { git fetch origin refs/pull/$1/head:pr/$1; } ; f"
+  pr = "!f() { git fetch origin refs/pull/$1/head:pr/$1; } ; f"
   review = !"git log master..origin/master"
   show-patch = format-patch --stdout -1
 [branch]
