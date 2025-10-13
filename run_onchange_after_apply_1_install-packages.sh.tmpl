@@ -51,11 +51,16 @@ defaults write com.apple.finder "FXEnableExtensionChangeWarning" -bool "false" #
 defaults write NSGlobalDomain "NSDocumentSaveNewDocumentsToCloud" -bool "false" # Open home directory
 
 # Menu Bar
-defaults write com.apple.menuextra.clock "DateFormat" -string "\"HH:mm:ss\"" # Only show time
+defaults write com.apple.menuextra.clock.plist IsAnalog -bool false # Use digital
+defaults write com.apple.menuextra.clock.plist DateFormat -string HH:mm # Fallback setting
+defaults write com.apple.menuextra.clock.plist ShowDayOfWeek -bool false # Do not show day of the week
+defaults write com.apple.menuextra.clock.plist ShowDate -int 2 # Do not show date
+defaults write com.apple.menuextra.clock.plist Show24Hour -bool true # Show 24 hours clock
+defaults write com.apple.menuextra.clock.plist ShowSeconds -bool false # Do not show seconds
+defaults write com.apple.menuextra.clock.plist ShowAMPM -bool false # Do not show AM/PM
 defaults write NSGlobalDomain "AppleEnableMenuBarTransparency" -bool false # Disable menu bar transparency
 defaults write com.apple.menuextra.battery ShowPercent -string "YES" # Show percent
 defaults write com.apple.menuextra.battery ShowTime -string "NO" # Do not show time
-
 
 # Trackpad
 defaults write com.apple.AppleMultitouchTrackpad "TrackpadThreeFingerDrag" -bool "true" # Drag windows with 3 fingers
