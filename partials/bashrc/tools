@@ -10,3 +10,5 @@ command -v nvim > /dev/null
 command -v eza > /dev/null
 [ $? -eq 0 ] && alias ls='eza'
 
+command -v fzf > /dev/null
+[ $? -eq 0 ] && eval "$(fzf --bash)"
