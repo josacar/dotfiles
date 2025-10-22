@@ -1,45 +1,45 @@
 # bashrc/common
 
-{{ include "partials/bashrc/common" -}}
+{{ include "partials/bashrc/common.sh" -}}
 
 # bashrc/custom
 
-{{ include "partials/bashrc/custom" -}}
+{{ include "partials/bashrc/custom.sh" -}}
 
 {{ if eq .chezmoi.os "darwin" -}}
 # bashrc/brew
-{{ include "partials/bashrc/brew" -}}
+{{ include "partials/bashrc/brew.sh" -}}
 {{ end }}
 
 # bashrc/git
-{{ include "partials/bashrc/git" -}}
+{{ include "partials/bashrc/git.sh" -}}
 
 # bashrc/tools
-{{ include "partials/bashrc/tools" -}}
+{{ include "partials/bashrc/tools.sh" -}}
 
 # bashrc/ruby
-{{ include "partials/bashrc/ruby" -}}
+{{ include "partials/bashrc/ruby.sh" -}}
 
 # bashrc/completions/git
-{{ include "partials/bashrc/completions/git" -}}
+{{ include "partials/bashrc/completions/git.sh" -}}
 
 # bashrc/completions/tmux
-{{ include "partials/bashrc/completions/tmux" -}}
+{{ include "partials/bashrc/completions/tmux.sh" -}}
 
 # bashrc/asdf
-{{ include "partials/bashrc/asdf" -}}
+{{ include "partials/bashrc/asdf.sh" -}}
 
 # bashrc/assume
-{{ include "partials/bashrc/assume" -}}
+{{ include "partials/bashrc/assume.sh" -}}
 
 # bashrc/go
-{{ include "partials/bashrc/go" -}}
+{{ include "partials/bashrc/go.sh" -}}
 
 # bashrc/iterm
-{{ include "partials/bashrc/iterm" -}}
+{{ include "partials/bashrc/iterm.sh" -}}
 
 # bashrc/mise
-{{ include "partials/bashrc/mise" -}}
+{{ include "partials/bashrc/mise.sh" -}}
 
 # load z/rupa script
 . "${HOME}/.dotfiles/z.sh"
