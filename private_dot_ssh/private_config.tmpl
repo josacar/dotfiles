@@ -1,0 +1,28 @@
+{{- /*
+  vim:ft=sshconfig.gotmpl:
+*/ -}}
+{{- if ( and (hasKey . "work") ( eq .work true) ) }}
+Include ~/.ssh/work_config
+{{- end -}}
+
+Host *
+    ForwardAgent yes
+    SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials no
+
+Host *.tmate.io
+    ForwardAgent no
+
+Host yojimbo
+  User selu
+
+Host gigalmesh
+  User selu
+
+Host openwrt
+  User root
+
+Host rock-3a
+  User selu
