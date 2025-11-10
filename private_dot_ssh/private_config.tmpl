@@ -1,9 +1,9 @@
 {{- /*
   vim:ft=sshconfig.gotmpl:
 */ -}}
-{{- if ( and (hasKey . "work") ( eq .work true) ) }}
+{{- if ( and (hasKey . "work") ( eq .work true) ) -}}
 Include ~/.ssh/work_config
-{{- end -}}
+{{- end }}
 
 Host *
     ForwardAgent yes
