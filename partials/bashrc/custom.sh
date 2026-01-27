@@ -10,7 +10,7 @@ bind 'RETURN: "\e\C-e\n"'
 
 PS1='${debian_chroot:+($debian_chroot)}\[\033[1;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w'
 
-if declare -F __git_ps1 > /dev/null ;then
+if declare -F __git_ps1 >/dev/null; then
   PS1="${PS1}\[\033[1;31m\]\$(__git_ps1 \" (%s)\")"
 fi
 
@@ -23,6 +23,10 @@ export LC_ALL=en_US.UTF-8
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 export XDG_DATA_DIRS="$HOME/.local/share/flatpak/exports/share:$XDG_DATA_DIRS"
 export PATH=$PATH:$HOME/.local/bin:$HOME/bin
+
+if [ -d "$HOME/.rd/bin" ]; then
+  export PATH="$HOME/.rd/bin:$PATH"
+fi
 
 alias less='\less -r'
 alias vless='/usr/share/vim/vim80/macros/less.sh'
@@ -37,8 +41,8 @@ fi
 
 fixssh() {
   for key in SSH_AUTH_SOCK SSH_CONNECTION SSH_CLIENT; do
-    if (tmux show-environment | grep "^${key}" > /dev/null); then
-      value=`tmux show-environment | grep "^${key}" | sed -e "s/^[A-Z_]*=//"`
+    if (tmux show-environment | grep "^${key}" >/dev/null); then
+      value=$(tmux show-environment | grep "^${key}" | sed -e "s/^[A-Z_]*=//")
       export ${key}="${value}"
     fi
   done
