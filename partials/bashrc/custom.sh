@@ -26,6 +26,7 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
 if [ -d "$HOME/.rd/bin" ]; then
   export PATH="$HOME/.rd/bin:$PATH"
+  export DOCKER_HOST='unix:///Users/joseluis/.rd/docker.sock'
 fi
 
 alias less='\less -r'
