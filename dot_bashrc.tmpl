@@ -9,6 +9,8 @@
 {{ if eq .chezmoi.os "darwin" -}}
 # bashrc/brew
 {{ include "partials/bashrc/brew.sh" -}}
+# bashrc/zerobrew
+{{ include "partials/bashrc/zerobrew.sh" -}}
 {{ end }}
 
 # bashrc/git
