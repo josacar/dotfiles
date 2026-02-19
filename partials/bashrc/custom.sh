@@ -1,9 +1,5 @@
 set -o vi
 
-set editing-mode vi
-set keymap vi
-set convert-meta on
-
 bind -m vi-insert "\C-l":clear-screen
 bind '"\e\C-e": alias-expand-line'
 bind 'RETURN: "\e\C-e\n"'
