@@ -1,3 +1,7 @@
+# bashrc/bash_early
+
+{{ includeTemplate "partials/bashrc/bash_early.sh.tmpl" . -}}
+
 # bashrc/common
 
 {{ include "partials/bashrc/common.sh" -}}
@@ -42,6 +46,9 @@
 
 # bashrc/mise
 {{ include "partials/bashrc/mise.sh" -}}
+
+# load bashrc/ble.sh script
+{{ include "partials/bashrc/ble.sh" -}}
 
 # load z/rupa script
 . "${HOME}/.dotfiles/z.sh"

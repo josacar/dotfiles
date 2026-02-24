@@ -1,0 +1,10 @@
+{{- /*
+vim:ft=sh.gotmpl:
+*/ -}}
+if [[ $- == *i* ]]; then # interactive
+  {{ if eq .chezmoi.os "linux" -}}
+  # placeholder
+  {{ else if eq .chezmoi.os "darwin" -}}
+  source -- ~/.local/share/blesh/ble.sh --attach=none
+  {{ end -}}
+fi
