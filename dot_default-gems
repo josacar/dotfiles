@@ -5,3 +5,4 @@ standardrb
 pry
 pry-doc
 hirb
+ruby-lsp
