@@ -18,7 +18,7 @@ export TERM='xterm-256color'
 export LC_ALL=en_US.UTF-8
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 export XDG_DATA_DIRS="$HOME/.local/share/flatpak/exports/share:$XDG_DATA_DIRS"
-export PATH=$PATH:$HOME/.local/bin:$HOME/bin
+export PATH=$HOME/.local/bin:$HOME/bin:$PATH
 
 if [ -d "$HOME/.rd/bin" ]; then
   export PATH="$HOME/.rd/bin:$PATH"
