@@ -65,10 +65,9 @@ path = "gdu_{{ .chezmoi.os }}_{{ .chezmoi.arch }}"
 refreshPeriod = "360h" # 15 days
 
 [".local/bin/mitamae"]
-type = "archive-file"
-url = {{ gitHubLatestReleaseAssetURL "itamae-kitchen/mitamae" ( printf "mitamae-%s-%s.tar.gz" $arch .chezmoi.os ) | quote }}
+type = "file"
+url = {{ gitHubLatestReleaseAssetURL "itamae-kitchen/mitamae" ( printf "mitamae-%s-%s" $arch .chezmoi.os ) | quote }}
 executable = true
-path = "mitamae-{{ $arch }}-{{ .chezmoi.os }}"
 refreshPeriod = "360h" # 15 days
 
 # Other arch & os formats
@@ -123,4 +122,18 @@ type = "archive-file"
 url = {{ gitHubLatestReleaseAssetURL "jdx/usage" ( printf "usage-%s-%s.tar.gz" $usage_arch $rust_os ) | quote }}
 path = "usage"
 executable = true
+refreshPeriod = "360h" # 15 days
+
+{{- $gh_os := .chezmoi.os }}
+{{- $gh_ext := "tar.gz" }}
+{{- if eq .chezmoi.os "darwin" }}
+{{-   $gh_os = "macOS" }}
+{{-   $gh_ext = "zip" }}
+{{- end }}
+
+[".local/bin/gh"]
+type = "archive-file"
+url = {{ gitHubLatestReleaseAssetURL "cli/cli" (printf "gh_*_%s_%s.%s" $gh_os .chezmoi.arch $gh_ext) | quote }}
+stripComponents = 1
+path = "bin/gh"
 refreshPeriod = "360h" # 15 days
