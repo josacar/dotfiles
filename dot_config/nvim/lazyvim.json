@@ -2,9 +2,7 @@
   "extras": [
     "lazyvim.plugins.extras.editor.fzf",
     "lazyvim.plugins.extras.lang.ruby",
-    "lazyvim.plugins.extras.lang.terraform",
-    "lazyvim.plugins.extras.lang.typescript.biome",
-    "lazyvim.plugins.extras.util.chezmoi"
+    "lazyvim.plugins.extras.lang.terraform"
   ],
   "install_version": 8,
   "news": {
