@@ -1,0 +1,29 @@
+{
+  "models": {
+    "large": {
+      "model": "opencode-go/deepseek-v4-flash",
+      "provider": "bifrost"
+    }
+  },
+  "providers": {
+    "bifrost": {
+      "type": "openai-compat",
+      "base_url": "http://rock-3a:8080/v1",
+      "api_key": "dummy",
+      "models": [
+        { "id": "opencode-go/glm-5.1", "name": "GLM-5.1" },
+        { "id": "opencode-go/glm-5", "name": "GLM-5" },
+        { "id": "opencode-go/kimi-k2.5", "name": "Kimi K2.5" },
+        { "id": "opencode-go/kimi-k2.6", "name": "Kimi K2.6" },
+        { "id": "opencode-go/deepseek-v4-pro", "name": "DeepSeek V4 Pro" },
+        { "id": "opencode-go/deepseek-v4-flash", "name": "DeepSeek V4 Flash" },
+        { "id": "opencode-go/mimo-v2.5", "name": "MiMo-V2.5" },
+        { "id": "opencode-go/mimo-v2.5-pro", "name": "MiMo-V2.5-Pro" },
+        { "id": "opencode-go/minimax-m2.7", "name": "MiniMax M2.7" },
+        { "id": "opencode-go/minimax-m2.5", "name": "MiniMax M2.5" },
+        { "id": "opencode-go/qwen3.6-plus", "name": "Qwen3.6 Plus" },
+        { "id": "opencode-go/qwen3.5-plus", "name": "Qwen3.5 Plus" }
+      ]
+    }
+  }
+}
