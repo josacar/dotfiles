@@ -1,6 +1,2 @@
 
-which assume &> /dev/null
-
-if [ $? -eq 0 ]; then
-  alias assume="source assume"
-fi
+command -v assume &>/dev/null && alias assume="source assume"

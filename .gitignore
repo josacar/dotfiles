@@ -1,1 +1,10 @@
 .mise.toml
+*.pem
+*.key
+*.secret
+.env
+.env.*
+secrets.toml
+*.kbx
+*.gpg
+*.asc

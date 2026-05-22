@@ -57,8 +57,6 @@ set tabstop=2                         " Global tab width.
 set shiftwidth=2                      " And again, related.
 set expandtab                         " Use spaces instead of tabs
 set laststatus=2                      " Show the status line all the time
-set listchars=tab:▸\ ,eol:¬
-"set list                             " Show invisible characters
 "set cursorline                       " Show cursor line.
 
 source ~/.vim/vimrc/plug-bundle.vim
@@ -275,7 +273,6 @@ set list
 
 nnoremap <silent> <C-P> :CtrlP<CR>
 
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>" " OmniCompletion
 let g:SuperTabDefaultCompletionType = "context" " use context mode
 
 set clipboard=unnamed " Enable copying to system's clipboard
