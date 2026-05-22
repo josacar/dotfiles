@@ -32,9 +32,6 @@
 # bashrc/completions/tmux
 {{ include "partials/bashrc/completions/tmux.sh" -}}
 
-# bashrc/asdf
-{{ include "partials/bashrc/asdf.sh" -}}
-
 # bashrc/assume
 {{ include "partials/bashrc/assume.sh" -}}
 
@@ -42,7 +39,9 @@
 {{ include "partials/bashrc/go.sh" -}}
 
 # bashrc/iterm
+{{- if eq .chezmoi.os "darwin" -}}
 {{ include "partials/bashrc/iterm.sh" -}}
+{{- end -}}
 
 # bashrc/mise
 {{ include "partials/bashrc/mise.sh" -}}

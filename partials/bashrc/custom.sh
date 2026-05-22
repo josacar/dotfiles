@@ -22,11 +22,10 @@ export PATH=$HOME/.local/bin:$HOME/bin:$PATH
 
 if [ -d "$HOME/.rd/bin" ]; then
   export PATH="$HOME/.rd/bin:$PATH"
-  export DOCKER_HOST='unix:///Users/joseluis/.rd/docker.sock'
+  export DOCKER_HOST="unix://${HOME}/.rd/docker.sock"
 fi
 
 alias less='\less -r'
-alias vless='/usr/share/vim/vim80/macros/less.sh'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."

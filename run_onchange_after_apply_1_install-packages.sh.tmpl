@@ -93,7 +93,8 @@ defaults write NSGlobalDomain "NSAutomaticQuoteSubstitutionEnabled" -bool false 
 defaults write NSGlobalDomain "NSAutomaticDashSubstitutionEnabled" -bool false # Disable emdash
 defaults write NSGlobalDomain KeyRepeat -int 2 # Increase keyboard response
 defaults write NSGlobalDomain InitialKeyRepeat -int 30 # Reduce key repeat delay
-defaults write com.apple.LaunchServices LSQuarantine -bool false # Do not ask about unsigned apps
+# WARNING: Disables macOS Gatekeeper quarantine for downloaded apps — removes malware protection layer
+defaults write com.apple.LaunchServices LSQuarantine -bool false
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false # Disable opening and closing window animations
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false # Disable autocorrect
 defaults write com.apple.finder WarnOnEmptyTrash -bool false # Disable the warning before emptying the Trash
