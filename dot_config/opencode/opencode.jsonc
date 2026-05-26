@@ -11,39 +11,242 @@
       "models": {
         "opencode-go/glm-5.1": {
           "name": "GLM-5.1",
+          "family": "glm",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": { "field": "reasoning_content" },
+          "cost": {
+            "input": 1.4,
+            "output": 4.4,
+            "cache_read": 0.26
+          },
+          "limit": {
+            "context": 202752,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
         },
         "opencode-go/glm-5": {
           "name": "GLM-5",
+          "family": "glm",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": { "field": "reasoning_content" },
+          "cost": {
+            "input": 1,
+            "output": 3.2,
+            "cache_read": 0.2
+          },
+          "limit": {
+            "context": 202752,
+            "output": 32768
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
         },
         "opencode-go/kimi-k2.5": {
           "name": "Kimi K2.5",
+          "family": "kimi",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": { "field": "reasoning_content" },
+          "cost": {
+            "input": 0.6,
+            "output": 3,
+            "cache_read": 0.1
+          },
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
         },
         "opencode-go/kimi-k2.6": {
           "name": "Kimi K2.6",
+          "family": "kimi",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": { "field": "reasoning_content" },
+          "cost": {
+            "input": 0.95,
+            "output": 4,
+            "cache_read": 0.16
+          },
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image", "video"],
+            "output": ["text"]
+          }
         },
         "opencode-go/deepseek-v4-pro": {
           "name": "DeepSeek V4 Pro",
+          "family": "deepseek",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": { "field": "reasoning_content" },
+          "cost": {
+            "input": 1.74,
+            "output": 3.48,
+            "cache_read": 0.01
+          },
+          "limit": {
+            "context": 1000000,
+            "output": 384000
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
         },
         "opencode-go/deepseek-v4-flash": {
           "name": "DeepSeek V4 Flash",
+          "family": "deepseek",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": { "field": "reasoning_content" },
+          "cost": {
+            "input": 0.14,
+            "output": 0.28
+          },
+          "limit": {
+            "context": 1000000,
+            "output": 384000
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
         },
         "opencode-go/mimo-v2.5": {
           "name": "MiMo-V2.5",
+          "family": "mimo",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": { "field": "reasoning_content" },
+          "cost": {
+            "input": 0.4,
+            "output": 2,
+            "cache_read": 0.08
+          },
+          "limit": {
+            "context": 1000000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
         },
         "opencode-go/mimo-v2.5-pro": {
           "name": "MiMo-V2.5-Pro",
+          "family": "mimo",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": { "field": "reasoning_content" },
+          "cost": {
+            "input": 1,
+            "output": 3,
+            "cache_read": 0.2
+          },
+          "limit": {
+            "context": 1048576,
+            "output": 128000
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
         },
         "opencode-go/minimax-m2.7": {
           "name": "MiniMax M2.7",
+          "family": "minimax",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": { "field": "reasoning_content" },
+          "cost": {
+            "input": 0.3,
+            "output": 1.2,
+            "cache_read": 0.06
+          },
+          "limit": {
+            "context": 204800,
+            "output": 131072
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
         },
         "opencode-go/minimax-m2.5": {
           "name": "MiniMax M2.5",
+          "family": "minimax",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": { "field": "reasoning_content" },
+          "cost": {
+            "input": 0.3,
+            "output": 1.2,
+            "cache_read": 0.03
+          },
+          "limit": {
+            "context": 204800,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
         },
         "opencode-go/qwen3.6-plus": {
           "name": "Qwen3.6 Plus",
+          "family": "qwen",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": { "field": "reasoning_content" },
+          "cost": {
+            "input": 0.5,
+            "output": 3,
+            "cache_read": 0.05
+          },
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
         },
         "opencode-go/qwen3.5-plus": {
           "name": "Qwen3.5 Plus",
+          "family": "qwen",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": { "field": "reasoning_content" },
+          "cost": {
+            "input": 0.2,
+            "output": 1.2,
+            "cache_read": 0.02
+          },
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
         }
       }
     }
