@@ -85,9 +85,9 @@
         },
         {
           "id": "opencode-go/mimo-v2.5",
-          "name": "MiMo-V2.5",
-          "cost_per_1m_in": 0.40,
-          "cost_per_1m_out": 2.00,
+          "name": "MiMo V2.5",
+          "cost_per_1m_in": 0.14,
+          "cost_per_1m_out": 0.28,
           "cost_per_1m_in_cached": 0,
           "cost_per_1m_out_cached": 0,
           "context_window": 1000000,
@@ -97,9 +97,9 @@
         },
         {
           "id": "opencode-go/mimo-v2.5-pro",
-          "name": "MiMo-V2.5-Pro",
-          "cost_per_1m_in": 1.00,
-          "cost_per_1m_out": 3.00,
+          "name": "MiMo V2.5 Pro",
+          "cost_per_1m_in": 1.74,
+          "cost_per_1m_out": 3.48,
           "cost_per_1m_in_cached": 0,
           "cost_per_1m_out_cached": 0,
           "context_window": 1000000,
@@ -154,6 +154,54 @@
           "default_max_tokens": 16384,
           "can_reason": false,
           "supports_attachments": true
+        },
+        {
+          "id": "opencode-go/qwen3.7-max",
+          "name": "Qwen3.7 Max",
+          "cost_per_1m_in": 2.50,
+          "cost_per_1m_out": 7.50,
+          "cost_per_1m_in_cached": 0,
+          "cost_per_1m_out_cached": 0,
+          "context_window": 1000000,
+          "default_max_tokens": 16384,
+          "can_reason": false,
+          "supports_attachments": false
+        },
+        {
+          "id": "opencode-go/mimo-v2-pro",
+          "name": "MiMo V2 Pro",
+          "cost_per_1m_in": 1.00,
+          "cost_per_1m_out": 3.00,
+          "cost_per_1m_in_cached": 0,
+          "cost_per_1m_out_cached": 0,
+          "context_window": 1000000,
+          "default_max_tokens": 16384,
+          "can_reason": false,
+          "supports_attachments": true
+        },
+        {
+          "id": "opencode-go/mimo-v2-omni",
+          "name": "MiMo V2 Omni",
+          "cost_per_1m_in": 0.40,
+          "cost_per_1m_out": 2.00,
+          "cost_per_1m_in_cached": 0,
+          "cost_per_1m_out_cached": 0,
+          "context_window": 262000,
+          "default_max_tokens": 16384,
+          "can_reason": false,
+          "supports_attachments": true
+        },
+        {
+          "id": "opencode-go/hy3-preview",
+          "name": "HY3 Preview",
+          "cost_per_1m_in": 0.10,
+          "cost_per_1m_out": 0.30,
+          "cost_per_1m_in_cached": 0,
+          "cost_per_1m_out_cached": 0,
+          "context_window": 262000,
+          "default_max_tokens": 16384,
+          "can_reason": false,
+          "supports_attachments": false
         }
       ]
     }

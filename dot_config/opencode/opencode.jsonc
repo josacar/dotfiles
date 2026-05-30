@@ -98,7 +98,7 @@
           "cost": {
             "input": 1.74,
             "output": 3.48,
-            "cache_read": 0.01
+            "cache_read": 0.0145
           },
           "limit": {
             "context": 1000000,
@@ -117,7 +117,8 @@
           "interleaved": { "field": "reasoning_content" },
           "cost": {
             "input": 0.14,
-            "output": 0.28
+            "output": 0.28,
+            "cache_read": 0.0028
           },
           "limit": {
             "context": 1000000,
@@ -129,15 +130,15 @@
           }
         },
         "opencode-go/mimo-v2.5": {
-          "name": "MiMo-V2.5",
-          "family": "mimo",
+          "name": "MiMo V2.5",
+          "family": "mimo-v2.5",
           "status": "active",
           "reasoning": true,
           "interleaved": { "field": "reasoning_content" },
           "cost": {
-            "input": 0.4,
-            "output": 2,
-            "cache_read": 0.08
+            "input": 0.14,
+            "output": 0.28,
+            "cache_read": 0.0028
           },
           "limit": {
             "context": 1000000,
@@ -149,15 +150,15 @@
           }
         },
         "opencode-go/mimo-v2.5-pro": {
-          "name": "MiMo-V2.5-Pro",
-          "family": "mimo",
+          "name": "MiMo V2.5 Pro",
+          "family": "mimo-v2.5-pro",
           "status": "active",
           "reasoning": true,
           "interleaved": { "field": "reasoning_content" },
           "cost": {
-            "input": 1,
-            "output": 3,
-            "cache_read": 0.2
+            "input": 1.74,
+            "output": 3.48,
+            "cache_read": 0.0145
           },
           "limit": {
             "context": 1048576,
@@ -245,6 +246,84 @@
           },
           "modalities": {
             "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "opencode-go/qwen3.7-max": {
+          "name": "Qwen3.7 Max",
+          "family": "qwen3.7-max",
+          "status": "active",
+          "reasoning": true,
+          "cost": {
+            "input": 2.5,
+            "output": 7.5,
+            "cache_read": 0.5
+          },
+          "limit": {
+            "context": 1000000,
+            "output": 65536
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        },
+        "opencode-go/mimo-v2-pro": {
+          "name": "MiMo V2 Pro",
+          "family": "mimo-v2-pro",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": { "field": "reasoning_content" },
+          "cost": {
+            "input": 1,
+            "output": 3,
+            "cache_read": 0.2
+          },
+          "limit": {
+            "context": 1048576,
+            "output": 128000
+          },
+          "modalities": {
+            "input": ["text"],
+            "output": ["text"]
+          }
+        },
+        "opencode-go/mimo-v2-omni": {
+          "name": "MiMo V2 Omni",
+          "family": "mimo-v2-omni",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": { "field": "reasoning_content" },
+          "cost": {
+            "input": 0.4,
+            "output": 2,
+            "cache_read": 0.08
+          },
+          "limit": {
+            "context": 262144,
+            "output": 128000
+          },
+          "modalities": {
+            "input": ["text", "image", "audio", "pdf"],
+            "output": ["text"]
+          }
+        },
+        "opencode-go/hy3-preview": {
+          "name": "HY3 Preview",
+          "family": "hy3",
+          "status": "active",
+          "reasoning": true,
+          "cost": {
+            "input": 0.1,
+            "output": 0.3,
+            "cache_read": 0.03
+          },
+          "limit": {
+            "context": 262144,
+            "output": 262144
+          },
+          "modalities": {
+            "input": ["text"],
             "output": ["text"]
           }
         }
