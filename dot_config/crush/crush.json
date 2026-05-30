@@ -26,7 +26,7 @@
         {
           "id": "opencode-go/glm-5",
           "name": "GLM-5",
-          "cost_per_1m_in": 0.60,
+          "cost_per_1m_in": 0.6,
           "cost_per_1m_out": 1.92,
           "cost_per_1m_in_cached": 0,
           "cost_per_1m_out_cached": 0,
@@ -38,8 +38,8 @@
         {
           "id": "opencode-go/kimi-k2.5",
           "name": "Kimi K2.5",
-          "cost_per_1m_in": 0.40,
-          "cost_per_1m_out": 1.90,
+          "cost_per_1m_in": 0.4,
+          "cost_per_1m_out": 1.9,
           "cost_per_1m_in_cached": 0,
           "cost_per_1m_out_cached": 0,
           "context_window": 262000,
@@ -108,70 +108,10 @@
           "supports_attachments": true
         },
         {
-          "id": "opencode-go/minimax-m2.7",
-          "name": "MiniMax M2.7",
-          "cost_per_1m_in": 0.279,
-          "cost_per_1m_out": 1.20,
-          "cost_per_1m_in_cached": 0,
-          "cost_per_1m_out_cached": 0,
-          "context_window": 205000,
-          "default_max_tokens": 16384,
-          "can_reason": false,
-          "supports_attachments": true
-        },
-        {
-          "id": "opencode-go/minimax-m2.5",
-          "name": "MiniMax M2.5",
-          "cost_per_1m_in": 0.150,
-          "cost_per_1m_out": 1.15,
-          "cost_per_1m_in_cached": 0,
-          "cost_per_1m_out_cached": 0,
-          "context_window": 1000000,
-          "default_max_tokens": 16384,
-          "can_reason": false,
-          "supports_attachments": true
-        },
-        {
-          "id": "opencode-go/qwen3.6-plus",
-          "name": "Qwen3.6 Plus",
-          "cost_per_1m_in": 0.179,
-          "cost_per_1m_out": 1.07,
-          "cost_per_1m_in_cached": 0,
-          "cost_per_1m_out_cached": 0,
-          "context_window": 1000000,
-          "default_max_tokens": 16384,
-          "can_reason": false,
-          "supports_attachments": true
-        },
-        {
-          "id": "opencode-go/qwen3.5-plus",
-          "name": "Qwen3.5 Plus",
-          "cost_per_1m_in": 0.115,
-          "cost_per_1m_out": 0.688,
-          "cost_per_1m_in_cached": 0,
-          "cost_per_1m_out_cached": 0,
-          "context_window": 1000000,
-          "default_max_tokens": 16384,
-          "can_reason": false,
-          "supports_attachments": true
-        },
-        {
-          "id": "opencode-go/qwen3.7-max",
-          "name": "Qwen3.7 Max",
-          "cost_per_1m_in": 2.50,
-          "cost_per_1m_out": 7.50,
-          "cost_per_1m_in_cached": 0,
-          "cost_per_1m_out_cached": 0,
-          "context_window": 1000000,
-          "default_max_tokens": 16384,
-          "can_reason": false,
-          "supports_attachments": false
-        },
-        {
           "id": "opencode-go/mimo-v2-pro",
           "name": "MiMo V2 Pro",
-          "cost_per_1m_in": 1.00,
-          "cost_per_1m_out": 3.00,
+          "cost_per_1m_in": 1.0,
+          "cost_per_1m_out": 3.0,
           "cost_per_1m_in_cached": 0,
           "cost_per_1m_out_cached": 0,
           "context_window": 1000000,
@@ -182,8 +122,8 @@
         {
           "id": "opencode-go/mimo-v2-omni",
           "name": "MiMo V2 Omni",
-          "cost_per_1m_in": 0.40,
-          "cost_per_1m_out": 2.00,
+          "cost_per_1m_in": 0.4,
+          "cost_per_1m_out": 2.0,
           "cost_per_1m_in_cached": 0,
           "cost_per_1m_out_cached": 0,
           "context_window": 262000,
@@ -194,13 +134,80 @@
         {
           "id": "opencode-go/hy3-preview",
           "name": "HY3 Preview",
-          "cost_per_1m_in": 0.10,
-          "cost_per_1m_out": 0.30,
+          "cost_per_1m_in": 0.1,
+          "cost_per_1m_out": 0.3,
           "cost_per_1m_in_cached": 0,
           "cost_per_1m_out_cached": 0,
           "context_window": 262000,
           "default_max_tokens": 16384,
           "can_reason": false,
+          "supports_attachments": false
+        }
+      ]
+    },
+    "opencode-go-anthropic": {
+      "type": "anthropic-compatible",
+      "base_url": "https://opencode.ai/zen/go/v1",
+      "api_key": "env.BIFROST_OPENCODE_GO_API_KEY",
+      "models": [
+        {
+          "id": "opencode-go/qwen3.5-plus",
+          "name": "Qwen3.5 Plus",
+          "cost_per_1m_in": 0.115,
+          "cost_per_1m_out": 0.688,
+          "cost_per_1m_in_cached": 0,
+          "cost_per_1m_out_cached": 0,
+          "context_window": 262144,
+          "default_max_tokens": 16384,
+          "can_reason": true,
+          "supports_attachments": true
+        },
+        {
+          "id": "opencode-go/qwen3.6-plus",
+          "name": "Qwen3.6 Plus",
+          "cost_per_1m_in": 0.179,
+          "cost_per_1m_out": 1.07,
+          "cost_per_1m_in_cached": 0,
+          "cost_per_1m_out_cached": 0,
+          "context_window": 262144,
+          "default_max_tokens": 16384,
+          "can_reason": true,
+          "supports_attachments": true
+        },
+        {
+          "id": "opencode-go/qwen3.7-max",
+          "name": "Qwen3.7 Max",
+          "cost_per_1m_in": 2.5,
+          "cost_per_1m_out": 7.5,
+          "cost_per_1m_in_cached": 0,
+          "cost_per_1m_out_cached": 0,
+          "context_window": 1000000,
+          "default_max_tokens": 16384,
+          "can_reason": true,
+          "supports_attachments": false
+        },
+        {
+          "id": "opencode-go/minimax-m2.5",
+          "name": "MiniMax M2.5",
+          "cost_per_1m_in": 0.15,
+          "cost_per_1m_out": 1.15,
+          "cost_per_1m_in_cached": 0,
+          "cost_per_1m_out_cached": 0,
+          "context_window": 204800,
+          "default_max_tokens": 16384,
+          "can_reason": true,
+          "supports_attachments": false
+        },
+        {
+          "id": "opencode-go/minimax-m2.7",
+          "name": "MiniMax M2.7",
+          "cost_per_1m_in": 0.279,
+          "cost_per_1m_out": 1.2,
+          "cost_per_1m_in_cached": 0,
+          "cost_per_1m_out_cached": 0,
+          "context_window": 204800,
+          "default_max_tokens": 16384,
+          "can_reason": true,
           "supports_attachments": false
         }
       ]
