@@ -361,6 +361,32 @@
             ]
           }
         },
+        "opencode-go/minimax-m3": {
+          "name": "MiniMax M3",
+          "family": "minimax",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": {
+            "field": "reasoning_content"
+          },
+          "cost": {
+            "input": 0.35,
+            "output": 1.4,
+            "cache_read": 0.07
+          },
+          "limit": {
+            "context": 262144,
+            "output": 131072
+          },
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
         "opencode-go/qwen3.6-plus": {
           "name": "Qwen3.6 Plus",
           "family": "qwen",
@@ -373,6 +399,33 @@
             "input": 0.5,
             "output": 3,
             "cache_read": 0.05
+          },
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "opencode-go/qwen3.7-plus": {
+          "name": "Qwen3.7 Plus",
+          "family": "qwen",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": {
+            "field": "reasoning_content"
+          },
+          "cost": {
+            "input": 0.6,
+            "output": 3.5,
+            "cache_read": 0.06
           },
           "limit": {
             "context": 262144,
