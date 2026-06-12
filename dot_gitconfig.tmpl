@@ -4,7 +4,7 @@
 [user]
   email = {{ .email | quote }}
   name = {{ .name | quote }}
-  signingkey = {{ if .work }}~/.ssh/curro{{ else }}~/.ssh/personal{{ end | quote }}
+  signingkey = "{{ if .work }}~/.ssh/curro{{ else }}~/.ssh/personal{{ end }}"
 [gpg]
   format = ssh
 [github]
