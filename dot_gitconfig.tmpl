@@ -4,7 +4,9 @@
 [user]
   email = {{ .email | quote }}
   name = {{ .name | quote }}
-  signingkey = {{ .signingkey | quote }}
+  signingkey = {{ if .work }}~/.ssh/curro{{ else }}~/.ssh/personal{{ end | quote }}
+[gpg]
+  format = ssh
 [github]
   user = josacar
 [core]
