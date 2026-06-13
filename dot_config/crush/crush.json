@@ -226,6 +226,78 @@
           "default_max_tokens": 16384,
           "can_reason": true,
           "supports_attachments": false
+        },
+        {
+          "id": "opencode-go-free/deepseek-v4-flash-free",
+          "name": "DeepSeek V4 Flash - Free",
+          "cost_per_1m_in": 0,
+          "cost_per_1m_out": 0,
+          "cost_per_1m_in_cached": 0,
+          "cost_per_1m_out_cached": 0,
+          "context_window": 1000000,
+          "default_max_tokens": 16384,
+          "can_reason": false,
+          "supports_attachments": false
+        },
+        {
+          "id": "opencode-go-free/mimo-v2.5-free",
+          "name": "MiMo-V2.5 Free",
+          "cost_per_1m_in": 0,
+          "cost_per_1m_out": 0,
+          "cost_per_1m_in_cached": 0,
+          "cost_per_1m_out_cached": 0,
+          "context_window": 1000000,
+          "default_max_tokens": 16384,
+          "can_reason": false,
+          "supports_attachments": false
+        },
+        {
+          "id": "opencode-go-free/north-mini-code-free",
+          "name": "North Mini Code Free",
+          "cost_per_1m_in": 0,
+          "cost_per_1m_out": 0,
+          "cost_per_1m_in_cached": 0,
+          "cost_per_1m_out_cached": 0,
+          "context_window": 1000000,
+          "default_max_tokens": 16384,
+          "can_reason": false,
+          "supports_attachments": false
+        },
+        {
+          "id": "opencode-go-free/nemotron-3-ultra-free",
+          "name": "Nemotron 3 Ultra Free",
+          "cost_per_1m_in": 0,
+          "cost_per_1m_out": 0,
+          "cost_per_1m_in_cached": 0,
+          "cost_per_1m_out_cached": 0,
+          "context_window": 1000000,
+          "default_max_tokens": 16384,
+          "can_reason": false,
+          "supports_attachments": false
+        },
+        {
+          "id": "opencode-go-free/qwen3.6-plus-free",
+          "name": "Qwen3.6 Plus Free",
+          "cost_per_1m_in": 0,
+          "cost_per_1m_out": 0,
+          "cost_per_1m_in_cached": 0,
+          "cost_per_1m_out_cached": 0,
+          "context_window": 1000000,
+          "default_max_tokens": 16384,
+          "can_reason": false,
+          "supports_attachments": false
+        },
+        {
+          "id": "opencode-go-free/minimax-m3-free",
+          "name": "MiniMax M3 Free",
+          "cost_per_1m_in": 0,
+          "cost_per_1m_out": 0,
+          "cost_per_1m_in_cached": 0,
+          "cost_per_1m_out_cached": 0,
+          "context_window": 1000000,
+          "default_max_tokens": 16384,
+          "can_reason": false,
+          "supports_attachments": false
         }
       ]
     }
