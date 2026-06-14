@@ -49,6 +49,16 @@
           "limit": { "context": 262144, "output": 65536 },
           "modalities": { "input": ["text", "image", "video"], "output": ["text"] }
         },
+        "opencode-go/kimi-k2.7-code": {
+          "name": "Kimi K2.7 Code",
+          "family": "kimi",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": { "field": "reasoning_content" },
+          "cost": { "input": 0.95, "output": 4, "cache_read": 0.19 },
+          "limit": { "context": 262144, "output": 65536 },
+          "modalities": { "input": ["text", "image"], "output": ["text"] }
+        },
         "opencode-go/deepseek-v4-pro": {
           "name": "DeepSeek V4 Pro",
           "family": "deepseek",
@@ -191,7 +201,7 @@
           "status": "active",
           "reasoning": true,
           "interleaved": { "field": "reasoning_content" },
-          "cost": { "input": 0.3, "output": 1.2, "cache_read": 0.03 },
+          "cost": { "input": 0.3, "output": 1.2, "cache_read": 0.06 },
           "limit": { "context": 204800, "output": 65536 },
           "modalities": { "input": ["text"], "output": ["text"] }
         },
@@ -201,7 +211,7 @@
           "status": "active",
           "reasoning": true,
           "interleaved": { "field": "reasoning_content" },
-          "cost": { "input": 0.35, "output": 1.4, "cache_read": 0.07 },
+          "cost": { "input": 0.3, "output": 1.2, "cache_read": 0.06 },
           "limit": { "context": 262144, "output": 131072 },
           "modalities": { "input": ["text"], "output": ["text"] }
         },
@@ -221,7 +231,7 @@
           "status": "active",
           "reasoning": true,
           "interleaved": { "field": "reasoning_content" },
-          "cost": { "input": 0.6, "output": 3.5, "cache_read": 0.06 },
+          "cost": { "input": 0.4, "output": 1.6, "cache_read": 0.04 },
           "limit": { "context": 262144, "output": 65536 },
           "modalities": { "input": ["text", "image"], "output": ["text"] }
         },
