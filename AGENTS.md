@@ -98,9 +98,8 @@ Managed via `.chezmoiexternal.toml.tmpl`:
 ### Work vs Personal Profile
 
 The `.work` key (set during `chezmoi init`) controls:
-- **work=true**: Includes SSH config from `~/.dotfiles/work/.ssh_config`, installs Granted (AWS), installs SelfServeManifest for Mac managed installs, shows install instructions
-- **work=false** (or unset): Excludes work SSH config, installs personal brew casks (firefox, docker, slack, spotify, etc.)
-- `.ssh/curro` is excluded when work=false
+- **work=true**: Includes SSH config from `~/.dotfiles/work/.ssh_config`, installs Granted (AWS), installs SelfServeManifest for Mac managed installs, shows install instructions. Excludes opencode and crush configs.
+- **work=false** (or unset): Excludes work SSH config, installs personal brew casks (firefox, docker, slack, spotify, etc.). Excludes `.ssh/curro`.
 
 ---
 
@@ -204,6 +203,7 @@ Templated with `.name`, `.email`, `.signingkey` from init prompts. Key settings:
 8. **Docker host** is set to Rancher Desktop's socket on macOS; on Linux it uses the default socket.
 9. **Shell completion files** (`completions/git.sh`, `completions/tmux.sh`) are full scripts sourced into bashrc, not separate completion files.
 10. **Bitwarden CLI versions** are pinned in `.chezmoidata.toml` — update there rather than in the external URLs.
+11. **Opencode and Crush configs** (`.config/opencode/`, `.config/crush/`) are excluded on work profiles via `.chezmoiignore.tmpl`.
 
 ---
 

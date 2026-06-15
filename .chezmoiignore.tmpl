@@ -12,3 +12,8 @@ bin/turbo
 {{- if ( or ( not ( hasKey . "work")) ( eq .work false) ) }}
 .ssh/curro
 {{ end }}
+
+{{- if .work }}
+.config/opencode
+.config/crush
+{{ end }}
