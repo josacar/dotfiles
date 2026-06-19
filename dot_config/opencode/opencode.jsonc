@@ -9,6 +9,16 @@
         "apiKey": "dummy"
       },
       "models": {
+        "opencode-go/glm-5.2": {
+          "name": "GLM-5.2",
+          "family": "glm",
+          "status": "active",
+          "reasoning": true,
+          "interleaved": { "field": "reasoning_content" },
+          "cost": { "input": 1.4, "output": 4.4, "cache_read": 0.26 },
+          "limit": { "context": 202752, "output": 32768 },
+          "modalities": { "input": ["text"], "output": ["text"] }
+        },
         "opencode-go/glm-5.1": {
           "name": "GLM-5.1",
           "family": "glm",
