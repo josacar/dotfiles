@@ -246,7 +246,7 @@ esac
 ## `.gitignore` essentials
 
 ```
-bin/mitmae-*       # versioned binaries
+bin/mitamae-*       # versioned binaries
 bin/mitamae        # symlink
 *.swp
 config/.zsh/bundle/   # generated cache (varies by tool)

@@ -185,7 +185,7 @@ This decouples the orchestrator from long-lived SSH connections — better for s
 
 ## Hocho vs. Chef/Ansible Tower Bypass
 
-If you're coming from Chef Server or Ansible Tower/Lintanis, hocho is the closest equivalent: it provides a fleet inventory, an apply runner, and a bootstrap script — without a permanent server process. The big difference is **there is no Chef Server state**: your recipes and `hosts.yml` are the source of truth and live in git.
+If you're coming from Chef Server or Ansible Tower/AWX, hocho is the closest equivalent: it provides a fleet inventory, an apply runner, and a bootstrap script — without a permanent server process. The big difference is **there is no Chef Server state**: your recipes and `hosts.yml` are the source of truth and live in git.
 
 ## SSH Authentication
 

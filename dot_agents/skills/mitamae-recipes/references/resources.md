@@ -18,7 +18,7 @@ Block form for guards (mitamae-only):
 ```ruby
 execute 'migrate db' do
   command 'bundle exec rails db:migrate'
-  not_if { Dir.empty?('db/migrate') }    # incorrect example — see note
+  not_if { Dir.empty?('db/migrate') }    # block returns truthy/falsy; not_if skips on truthy
   only_if { File.exist?('/opt/app/config/database.yml') }
 end
 ```
@@ -377,7 +377,7 @@ end
 
 ---
 
-##-action idiom: multiple actions in one block
+## Actions in array (multiple actions in one block)
 
 ```ruby
 service 'nginx' do

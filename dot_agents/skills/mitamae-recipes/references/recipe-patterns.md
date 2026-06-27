@@ -221,7 +221,7 @@ end
 
 ## 2. Hocho-Based Provisioning (ruby/ruby-infra-recipe)
 
-When provisioning **multiple remote hosts** rather than the local machine, hocho is the canonical orchestrator. mitamae has no built-in SSH support — hocho provides binssh-to-target + binary bootstrap.
+When provisioning **multiple remote hosts** rather than the local machine, hocho is the canonical orchestrator. mitamae has no built-in SSH support — hocho provides SSH-to-target + binary bootstrap.
 
 ### Directory layout
 
@@ -465,7 +465,7 @@ node.reverse_merge!(
   docker: { users: %w[deploy] },
   rbenv: { global: '3.4.8' },
 )
-# overriding node.yml/j son passed via -y/-j wins
+# overriding node.yml/JSON passed via -y/-j wins
 ```
 
 This is the idiomatic way to give a recipe a default shape while letting deployment override it.

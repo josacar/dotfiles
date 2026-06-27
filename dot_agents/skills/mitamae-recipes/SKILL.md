@@ -63,9 +63,8 @@ end
 # Apply to local machine
 mitamae local recipe.rb
 
-# Dry-run — show what would change (since v1.12.0; alternatively -n works in some versions)
+# Dry-run — show what would change
 mitamae local -n recipe.rb
-mitamae local --dry-run recipe.rb
 
 # Pass node config
 mitamae local -j node.json recipe.rb           # JSON; may be repeated, last wins
@@ -83,7 +82,7 @@ mitamae local --plugins=./plugins recipe.rb
 # Disable colour (v1.12.3+)
 mitamae local --no-color recipe.rb
 
-# Multi-recipe: last recipe listed in an include_recipe chain runs first
+# Multi-recipe: include_recipe loads files in definition order; listed recipes run first-to-last.
 mitamae local recipes/default.rb -j node.json
 ```
 
@@ -179,7 +178,7 @@ rbenv:
     - "3.4.8"
 ```
 
-Multi-file merging: every `-j`/`-y` is loaded in order; later keys merge over (shallow merge by default), (currently no deep merge primitive — plan accordingly).
+Multi-file merging: every `-j`/`-y` is loaded in order; later keys merge over (shallow merge by default).
 
 ## Recipe Organization Patterns
 
