@@ -122,13 +122,13 @@ echo "Install ble.sh ..."
 
 if [[ ! -f "$HOME/.local/share/blesh/ble.sh" ]]; then
   tmp=$(mktemp -d)
-  git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git "$tmp/ble.sh"
+  git clone --recursive --depth 1 --shallow-submodules --quiet https://github.com/akinomyoga/ble.sh.git "$tmp/ble.sh"
   if command -v gmake >/dev/null 2>&1; then
     MAKE=gmake
   else
     MAKE=make
   fi
-  "$MAKE" -C "$tmp/ble.sh" install PREFIX="$HOME/.local"
+  "$MAKE" -C "$tmp/ble.sh" install PREFIX="$HOME/.local" >/dev/null
   rm -rf "$tmp"
 fi
 
