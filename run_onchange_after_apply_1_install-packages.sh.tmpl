@@ -7,7 +7,7 @@
 
 echo "Install packages ..."
 sudo apt-get update -qy
-sudo apt-get install ripgrep vim neovim gpg sudo wget curl fd-find fzf -y
+sudo apt-get install ripgrep vim neovim gpg sudo wget curl fd-find fzf ble.sh -y
 
 if ! command -v mise >/dev/null 2>&1; then
   echo "Installing mise"
@@ -117,6 +117,20 @@ fi
 
 echo "Install Brewfile packages ..."
 brew bundle
+
+echo "Install ble.sh ..."
+
+if [[ ! -f "$HOME/.local/share/blesh/ble.sh" ]]; then
+  tmp=$(mktemp -d)
+  git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git "$tmp/ble.sh"
+  if command -v gmake >/dev/null 2>&1; then
+    MAKE=gmake
+  else
+    MAKE=make
+  fi
+  "$MAKE" -C "$tmp/ble.sh" install PREFIX="$HOME/.local"
+  rm -rf "$tmp"
+fi
 
 echo "Install chefdk gems ..."
 install_chefdk_gem kitchen-dokken

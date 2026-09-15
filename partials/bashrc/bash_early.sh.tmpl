@@ -5,6 +5,6 @@ if [[ $- == *i* ]]; then # interactive
   {{ if eq .chezmoi.os "linux" -}}
   [[ -f /usr/share/blesh/ble.sh ]] && source /usr/share/blesh/ble.sh --noattach
   {{ else if eq .chezmoi.os "darwin" -}}
-  source -- ~/.local/share/blesh/ble.sh --attach=none
+  [[ -f ~/.local/share/blesh/ble.sh ]] && source -- ~/.local/share/blesh/ble.sh --attach=none
   {{ end -}}
 fi
