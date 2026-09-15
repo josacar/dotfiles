@@ -23,7 +23,6 @@ brew "jq"
 brew "mise"
 brew "mtr"
 brew "nvim"
-brew "openconnect"
 brew "pinentry-mac"
 brew "pstree"
 brew "pwgen"
@@ -44,7 +43,6 @@ brew "yt-dlp"
 cask "ballast"
 cask "beardie"
 cask "hammerspoon"
-cask "keepassxc"
 cask "macdown"
 cask "proton-drive"
 cask "quitter"
@@ -59,7 +57,6 @@ mas "iMovie", id: 408981434
 mas "LINE", id: 539883307
 mas "Pages", id: 361309726
 mas "Keynote", id: 361285480
-mas "Todoist", id: 585829637
 mas "Numbers", id: 361304891
 
 {{- if ( and (hasKey . "work") ( eq .work true) ) }}
@@ -68,11 +65,9 @@ brew "granted"
 
 # Rest is installed via FSC
 {{- else }}
-brew "awscli"
 cask "amazon-photos"
 cask "firefox"
 cask "google-chrome"
-cask "session-manager-plugin"
 cask "spotify"
 cask "textmate"
 cask "vlc"
