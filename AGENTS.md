@@ -4,7 +4,7 @@
 
 A [chezmoi](https://chezmoi.io) dotfiles repository managed by **Jose Luis Salas** (`josacar`), converted from an earlier `freshshell/fresh` setup. It manages shell, editor, and tool configuration across **macOS** and **Linux** (Debian-based) machines, with a **personal/work profile** toggle.
 
-**Source of truth**: [gitlab.com/josacar/dotfiles](https://gitlab.com/josacar/dotfiles) (`origin`). [github.com/josacar/dotfiles](https://github.com/josacar/dotfiles) is a push-only mirror; every `git push origin` updates both.
+**Source of truth**: [gitlab.com/josacar/dotfiles](https://gitlab.com/josacar/dotfiles) (`origin`), the only remote configured. [github.com/josacar/dotfiles](https://github.com/josacar/dotfiles) is a mirror kept in sync by GitLab itself, so pushes go to GitLab only.
 
 ---
 
