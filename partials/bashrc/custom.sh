@@ -29,6 +29,10 @@ if [ -d "/opt/local/bin/" ]; then
   export PATH="/opt/local/bin:$PATH"
 fi
 
+if [ -d "/opt/local/sbin/" ]; then
+  export PATH="/opt/local/sbin:$PATH"
+fi
+
 if [ -d "$HOME/.opencode/bin" ]; then
   export PATH="$HOME/.opencode/bin:$PATH"
 fi
