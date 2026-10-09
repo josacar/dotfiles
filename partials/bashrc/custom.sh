@@ -25,6 +25,10 @@ if [ -d "$HOME/.rd/bin" ]; then
   export DOCKER_HOST="unix://${HOME}/.rd/docker.sock"
 fi
 
+if [ -d "/opt/local/bin/" ]; then
+  export PATH="/opt/local/bin:$PATH"
+fi
+
 if [ -d "$HOME/.opencode/bin" ]; then
   export PATH="$HOME/.opencode/bin:$PATH"
 fi
