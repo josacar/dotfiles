@@ -78,22 +78,6 @@ configuration management tool driven by a single binary.
 - Helpers live in `define`-only recipes (`credentials.rb`, `quadlets.rb`) and are
   pulled in with `include_recipe`; including them more than once is harmless.
 
-## Verification
-
-This machine is usually **not** the target host, so treat real applies as
-off-limits unless the user explicitly says otherwise:
-
-- `ruby -c <recipe>.rb` for syntax on every edited file.
-- `mitamae local -n <recipe>.rb` (or `default.rb`) for a dry run — the binary may
-  be `./mitamae` or `~/.local/bin/mitamae`. The dry run must show no `ERROR` or
-  `WARN` output and should be identical on two consecutive runs.
-- A dry run never executes commands, so it cannot catch bad string interpolation
-  or broken guards. Exercise the risky ones: temp paths with a scratch recipe,
-  `--log-level=debug` to print the real command, or a `local_ruby_block` probe.
-- Real applies happen on the target after the change is pushed. Follow the
-  project's documented workflow (in this repo: commit and push, then pull and
-  run on the Rock 3A).
-
 ## Plugins
 
 Plugins extend the DSL or provide reusable recipes. They are **not** gems: they
@@ -119,10 +103,80 @@ resource/executor pair.
   `include_recipe '<name>'`; `<name>/<recipe>.rb` is
   `include_recipe '<name>::<recipe>'`. A flat
   `mrblib/mitamae/plugin/recipe/<name>.rb` also serves `include_recipe '<name>'`.
+### Known plugins (curated, 2026-10)
+
+The GitHub search `mitamae-plugin` returns only ~36 repositories, mostly
+Itamae-era and unmaintained. The ones worth knowing for Linux servers:
+
+| Repository | Adds |
+|---|---|
+| `itamae-plugins/mitamae-plugin-resource-cron` | `cron` resource (Chef port, maintained) |
+| `takumin/mitamae-plugin-resource-apt_repository` | `apt_repository` — one-line and deb822 sources (active) |
+| `takumin/mitamae-plugin-resource-apt_keyring` | `apt_keyring` — keyring files under `/etc/apt/keyrings` |
+| `takumin/mitamae-plugin-resource-gpg_keyring` | `gpg_keyring` (active) |
+| `takumin/mitamae-plugin-resource-capabilities` | `capabilities` — `setcap` file capabilities (WIP) |
+| `takumin/mitamae-plugin-resource-mount` | `mount` — fstab entries (WIP, undocumented) |
+| `dsisnero/mitamae-plugin-resource-github_binary` | `github_binary` — download + extract a GitHub release asset |
+| `itamae-plugins/mitamae-plugin-resource-deploy_revision` | Chef-style `deploy_revision` |
+| `itamae-plugins/mitamae-plugin-resource-runit_service` | `runit_service` (not systemd) |
+| `itamae-plugins/itamae-plugin-recipe-rbenv` | `include_recipe 'rbenv'` / `'rbenv::user'` |
+
+Shape of the two most likely ones:
+
+```ruby
+apt_repository "Grafana" do
+  path "/etc/apt/sources.list.d/grafana.sources"   # .sources => deb822
+  entry [{ uri: "https://apt.grafana.com", suite: "stable",
+           components: ["main"], signed_by: "/etc/apt/keyrings/grafana.asc" }]
+end
+
+github_binary "rqbit" do
+  repo "ikatson/rqbit"
+  version "v9.0.1"          # or "latest"
+  binary_name "rqbit"
+  install_path "/usr/local/bin/rqbit"
+end
+```
+
+`apt_repository` expands `###platform_codename###` (plus `###platform_distrib###`,
+`###platform_release###`, `###platform_major_version###`,
+`###platform_minor_version###`) from `/etc/os-release`, so one entry can serve
+several distros. `github_binary` auto-detects OS/arch when `asset_pattern` is
+omitted and unpacks tar.gz/tar.xz/tar.bz2/zip.
+
 - **Before using one**: confirm the plugin is actually vendored (`ls plugins/`),
   that the recipe runs from the directory containing `plugins/` (or that
   `--plugins` is passed), and that its `MItamae::*` internals match the binary in
-  use. If you cannot verify that, say so instead of assuming.
+  use (`mrblib/resource/<name>.rb`). A missing plugin fails at parse time with
+  `undefined method`. If you cannot verify all of that, say so instead of
+  assuming.
+- **Adding one is a decision, not a shortcut**: a plugin is an unmaintained
+  third-party dependency with an experimental API. Check the last push date, read
+  its `mrblib/`, and propose it (with the alternative) before vendoring. This
+  repo currently hand-rolls several of these with `execute` + guards and
+  `remote_file` — apt keyrings and deb822 sources in `acmers.rb`/`grafana.rb`,
+  GitHub-release downloads in `homeassistant.rb` — and that is often the cheaper,
+  safer option.
+- **Finding more**: `gh search repos mitamae-plugin --limit 100`,
+  <https://github.com/search?q=mitamae-plugin&type=repositories>, the
+  `itamae-plugins` org, and `gh search repos itamae-plugin` (the Itamae prefix
+  works at runtime too).
+
+## Verification
+
+This machine is usually **not** the target host, so treat real applies as
+off-limits unless the user explicitly says otherwise:
+
+- `ruby -c <recipe>.rb` for syntax on every edited file.
+- `mitamae local -n <recipe>.rb` (or `default.rb`) for a dry run — the binary may
+  be `./mitamae` or `~/.local/bin/mitamae`. The dry run must show no `ERROR` or
+  `WARN` output and should be identical on two consecutive runs.
+- A dry run never executes commands, so it cannot catch bad string interpolation
+  or broken guards. Exercise the risky ones: temp paths with a scratch recipe,
+  `--log-level=debug` to print the real command, or a `local_ruby_block` probe.
+- Real applies happen on the target after the change is pushed. Follow the
+  project's documented workflow (in this repo: commit and push, then pull and
+  run on the Rock 3A).
 
 ## Working style
 
