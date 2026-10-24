@@ -28,12 +28,14 @@ configuration management tool driven by a single binary.
   `File.basename`, `File.read`, `Dir.glob`, `ENV`, `JSON`, `Open3`, `Shellwords`,
   `Tempfile` are available. When unsure, probe with
   `local_ruby_block do block { puts ... } end` instead of guessing.
-- **Only the 15 built-in resources exist**, plus whatever recipes `define`:
-  `package`, `service`, `execute`, `file`, `directory`, `link`, `template`,
-  `remote_file`, `remote_directory`, `git`, `user`, `group`, `gem_package`,
-  `http_request`, `local_ruby_block`. Never invent a resource and never use
-  Chef-only features (`lazy`, `data_bag`, `run_state`, `notifies ... :delayed`
-  is allowed but prefer `:immediately`).
+- **Only the 15 built-in resources exist**, plus whatever recipes `define` and
+  whatever plugins are vendored under `plugins/`: `package`, `service`,
+  `execute`, `file`, `directory`, `link`, `template`, `remote_file`,
+  `remote_directory`, `git`, `user`, `group`, `gem_package`, `http_request`,
+  `local_ruby_block`. Check `plugins/` before assuming an unfamiliar keyword is
+  invalid, and never invent a resource. Never use Chef-only features (`lazy`,
+  `data_bag`, `run_state`); `notifies ... :delayed` is allowed, but prefer
+  `:immediately`.
 - **Idempotent, or fail loudly.** Every resource must converge to "no change" on
   a second run:
   - Guard with `not_if` / `only_if` strings using `test`, `grep -q`, `cmp -s`,
@@ -91,6 +93,36 @@ off-limits unless the user explicitly says otherwise:
 - Real applies happen on the target after the change is pushed. Follow the
   project's documented workflow (in this repo: commit and push, then pull and
   run on the Rock 3A).
+
+## Plugins
+
+Plugins extend the DSL or provide reusable recipes. They are **not** gems: they
+are loaded from a filesystem directory relative to the mitamae working
+directory. Prefer a repo-local `define` unless you genuinely need a full
+resource/executor pair.
+
+- **Discovery**: `./plugins/*` under the working directory, or
+  `--plugins=/path/to/plugins` (mitamae ≥ 1.10.1). Directories must be named
+  `mitamae-plugin-resource-<name>` / `mitamae-plugin-recipe-<name>` (the
+  `itamae-plugin-*` prefix also works). Vendor them as git submodules under
+  `plugins/` and pin the commit — the API is experimental.
+- **Resource plugin**: `mrblib/resource/<name>.rb` defines
+  `MItamae::Plugin::Resource::<Name> < MItamae::Resource::Base` with
+  `define_attribute :attr, type: String, default: x, default_name: true` and
+  `self.available_actions = [:create, :delete]`. Its
+  `mrblib/resource_executor/<name>.rb` defines
+  `MItamae::Plugin::ResourceExecutor::<Name>` and must implement `apply`,
+  `set_desired_attributes(desired, action)` and
+  `set_current_attributes(current, action)`; `pre_action` and `verify` are
+  optional hooks. Work through `desired`/`current` attributes and `run_command`.
+- **Recipe plugin**: `mrblib/mitamae/plugin/recipe/<name>/default.rb` is
+  `include_recipe '<name>'`; `<name>/<recipe>.rb` is
+  `include_recipe '<name>::<recipe>'`. A flat
+  `mrblib/mitamae/plugin/recipe/<name>.rb` also serves `include_recipe '<name>'`.
+- **Before using one**: confirm the plugin is actually vendored (`ls plugins/`),
+  that the recipe runs from the directory containing `plugins/` (or that
+  `--plugins` is passed), and that its `MItamae::*` internals match the binary in
+  use. If you cannot verify that, say so instead of assuming.
 
 ## Working style
 
