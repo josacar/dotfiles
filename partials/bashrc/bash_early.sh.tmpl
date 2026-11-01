@@ -1,7 +1,8 @@
 {{- /*
 vim:ft=sh.gotmpl:
 */ -}}
-if [[ $- == *i* ]]; then # interactive
+# ble.sh only supports GNU bash; bash-compatible shells (e.g. brush) also source .bashrc
+if [[ $- == *i* && ${BASH##*/} == bash ]]; then # interactive bash
   {{ if eq .chezmoi.os "linux" -}}
   [[ -f /usr/share/blesh/ble.sh ]] && source /usr/share/blesh/ble.sh --noattach
   {{ else if eq .chezmoi.os "darwin" -}}
