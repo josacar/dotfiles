@@ -1,8 +1,11 @@
 set -o vi
 
-bind -m vi-insert "\C-l":clear-screen
-bind '"\e\C-e": alias-expand-line'
-bind 'RETURN: "\e\C-e\n"'
+# bind is readline-specific; bash-compatible shells (e.g. brush) also source .bashrc
+if [[ $- == *i* && ${BASH##*/} == bash ]]; then
+  bind -m vi-insert "\C-l":clear-screen
+  bind '"\e\C-e": alias-expand-line'
+  bind 'RETURN: "\e\C-e\n"'
+fi
 
 PS1='${debian_chroot:+($debian_chroot)}\[\033[1;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w'
 
